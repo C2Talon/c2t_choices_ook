@@ -30,9 +30,8 @@ void main (int id,string page) {
 				case 3:
 					print("Ook: playing RPS");
 					run_choice(2);//game of chance
-					choices = available_choice_options();
 					//self-correcting
-					foreach i,x in choices
+					foreach i,x in available_choice_options()
 						if (x == "Paper" || x == "Scissors")
 							num++;
 					if (num == 2)
@@ -48,11 +47,11 @@ void main (int id,string page) {
 							buf = run_choice(random(3)+1);
 						}
 						if (buf.contains_text("swordfish")) {
-							print("Ook: won RPS");
+							print("Ook: won RPS; Cavaman Dan available to fight");
 							set_property("c2t_ttt_ookTheMookStage","4");
 						}
 						else
-							print("Ook: lost RPS");
+							print("Ook: lost RPS; need to try again");
 					}
 					else {
 						run_choice(1);//pick rock
@@ -73,6 +72,7 @@ void main (int id,string page) {
 						set_property("c2t_ttt_ookTheMookStage",get_property("c2t_ttt_ookTheMookStage").to_int()+1);
 					}
 					else {//something broke? only fire to teach
+						print("Ook: only fire was available to teach; should do RPS next");
 						run_choice(1);
 						set_property("c2t_ttt_ookTheMookStage","3");
 					}
@@ -87,8 +87,6 @@ void main (int id,string page) {
 		case 955:
 			if (choices contains 3)
 				run_choice(3);
-			else
-				run_choice(2);
 			break;
 	}
 }
