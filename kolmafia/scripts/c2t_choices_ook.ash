@@ -40,9 +40,10 @@ void main (int id,string page) {
 						set_property("c2t_ttt_ookTheMookStage",1+num);
 
 					//play RPS
-					if (get_property("c2t_ttt_ookTheMookStage") == "3" || num > 0) {
+					if (get_property("c2t_ttt_ookTheMookStage").to_int() > 1) {
 						buf = run_choice(random(3)+1);
-						while (buf.contains_text("We tie!")) {
+						while (available_choice_options()[1] == "Ugh, fine.") {
+							print("Ook: didn't win RPS, but will play again");
 							run_choice(1);
 							buf = run_choice(random(3)+1);
 						}
@@ -51,7 +52,7 @@ void main (int id,string page) {
 							set_property("c2t_ttt_ookTheMookStage","4");
 						}
 						else
-							print("Ook: lost RPS; need to try again");
+							print("Ook: need to teach paper or scissors");
 					}
 					else {
 						run_choice(1);//pick rock
